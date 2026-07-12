@@ -1,8 +1,14 @@
 import { useState } from "react";
 
+interface ShoppingItemType {
+  id: number;
+  name: string;
+  isBought: boolean;
+}
+
 function App() {
   const [text, setText] = useState("");
-  const [items, setItem] = useState([
+  const [items, setItems] = useState<ShoppingItemType[]>([
     { id: 1, name: "納豆", isBought: true },
     { id: 2, name: "牛乳", isBought: false },
   ]);
@@ -13,7 +19,7 @@ function App() {
       }
       return item;
     });
-    setItem(updateItems);
+    setItems(updateItems);
   };
   return (
     <div className="app-container">
@@ -30,7 +36,7 @@ function App() {
           className="add-button"
           onClick={() => {
             if (!text.trim()) return;
-            setItem([
+            setItems([
               ...items,
               { id: Date.now(), name: text, isBought: false },
             ]);
@@ -61,7 +67,7 @@ function App() {
             <button
               className="delete-button"
               onClick={() => {
-                setItem(items.filter((checkItem) => checkItem.id !== item.id));
+                setItems(items.filter((checkItem) => checkItem.id !== item.id));
               }}
             >
               削除
