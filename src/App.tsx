@@ -62,7 +62,10 @@ function App() {
                 {item.name}
               </span>
             </label>
-            <button className="delete-button" onClick={() => handleDeleteItem}>
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteItem(item.id)}
+            >
               削除
             </button>
           </li>

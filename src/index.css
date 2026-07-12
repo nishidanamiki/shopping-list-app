@@ -68,10 +68,6 @@
   flex: 1;
 }
 
-.item-name {
-  /* min-width: 160px; */
-}
-
 .bought-item {
   text-decoration: line-through;
 }
