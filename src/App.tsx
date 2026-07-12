@@ -12,6 +12,14 @@ function App() {
     { id: 1, name: "納豆", isBought: true },
     { id: 2, name: "牛乳", isBought: false },
   ]);
+  const handleAddItem = () => {
+    if (!text.trim()) return;
+    setItems([...items, { id: Date.now(), name: text, isBought: false }]);
+    setText("");
+  };
+  const handleDeleteItem = (id: number) => {
+    setItems(items.filter((checkItem) => checkItem.id !== id));
+  };
   const handleToggleBought = (id: number) => {
     const updateItems = items.map((item) => {
       if (id === item.id) {
@@ -32,17 +40,7 @@ function App() {
           placeholder="買う物を入力"
           value={text}
         />
-        <button
-          className="add-button"
-          onClick={() => {
-            if (!text.trim()) return;
-            setItems([
-              ...items,
-              { id: Date.now(), name: text, isBought: false },
-            ]);
-            setText("");
-          }}
-        >
+        <button className="add-button" onClick={handleAddItem}>
           追加
         </button>
       </div>
@@ -64,12 +62,7 @@ function App() {
                 {item.name}
               </span>
             </label>
-            <button
-              className="delete-button"
-              onClick={() => {
-                setItems(items.filter((checkItem) => checkItem.id !== item.id));
-              }}
-            >
+            <button className="delete-button" onClick={() => handleDeleteItem}>
               削除
             </button>
           </li>
