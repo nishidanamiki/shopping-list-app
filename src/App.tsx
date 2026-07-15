@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ShoppingItem from "./components/ShoppingItem";
 
 interface ShoppingItemType {
   id: number;
@@ -47,28 +48,12 @@ function App() {
 
       <ul className="buy-list">
         {items.map((item) => (
-          <li className="buy-item" key={item.id}>
-            <label className="buy-label">
-              <input
-                type="checkbox"
-                checked={item.isBought}
-                onChange={() => handleToggleBought(item.id)}
-              />
-              <span
-                className={
-                  item.isBought ? "item-name bought-item" : "item-name"
-                }
-              >
-                {item.name}
-              </span>
-            </label>
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteItem(item.id)}
-            >
-              削除
-            </button>
-          </li>
+          <ShoppingItem
+            key={item.id}
+            item={item}
+            handleDeleteItem={handleDeleteItem}
+            handleToggleBought={handleToggleBought}
+          />
         ))}
       </ul>
     </div>
