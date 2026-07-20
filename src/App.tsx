@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ShoppingItem from "./components/ShoppingItem";
+import ShoppingList from "./components/ShoppingList";
 
 interface ShoppingItemType {
   id: number;
@@ -45,17 +45,11 @@ function App() {
           追加
         </button>
       </div>
-
-      <ul className="buy-list">
-        {items.map((item) => (
-          <ShoppingItem
-            key={item.id}
-            item={item}
-            handleDeleteItem={handleDeleteItem}
-            handleToggleBought={handleToggleBought}
-          />
-        ))}
-      </ul>
+      <ShoppingList
+        items={items}
+        handleDeleteItem={handleDeleteItem}
+        handleToggleBought={handleToggleBought}
+      />
     </div>
   );
 }
